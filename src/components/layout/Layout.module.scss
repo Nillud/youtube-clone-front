@@ -1,0 +1,43 @@
+@keyframes hideSidebar {
+    from {
+        transform: translateX(0);
+        width: var(--sidebar-width);
+    }
+
+    to {
+        width: 3.8rem;
+    }
+}
+
+@keyframes showSidebar {
+    from {
+        width: 3.8rem;
+    }
+
+    to {
+        transform: translateX(0);
+        width: var(--sidebar-width);
+    }
+}
+
+.hidedSidebar {
+    >aside {
+        animation: hideSidebar .35s forwards;
+        flex-grow: 0;
+
+        >nav>div:first-child {
+            opacity: 0;
+        }
+    }
+
+    >div {
+        width: 100%;
+    }
+}
+
+.showedSidebar {
+    >aside {
+        animation: showSidebar .3s forwards;
+        width: var(--sidebar-width);
+    }
+}
