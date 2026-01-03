@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { COLORS } from '@/src/constants/colors.constants'
 
-import { PUBLIC_PAGE } from '@/src/config/public-page.config'
+import { PAGE } from '@/src/config/public-page.config'
 
 interface Props {
 	toggleSidebar: () => void
@@ -20,7 +20,7 @@ export function SidebarHeader({ toggleSidebar }: Props) {
 			</button>
 
 			<Link
-				href={PUBLIC_PAGE.HOME}
+				href={PAGE.HOME}
 				className='flex items-center gap-1.5'
 			>
 				<SquarePlay

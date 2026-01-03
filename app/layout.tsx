@@ -1,15 +1,21 @@
 import type { Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
 
-import './globals.scss'
 import Layout from '@/src/components/layout/Layout'
+
+import { Providers } from '@/src/providers/Providers'
+
+import './globals.scss'
 
 const notoSans = Noto_Sans({
 	subsets: ['latin']
 })
 
 export const metadata: Metadata = {
-	title: 'NilVideo',
+	title: {
+		absolute: 'NilVideo',
+		template: '%s | NilVideo'
+	},
 	description: 'Video service by Nillud'
 }
 
@@ -21,7 +27,9 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={`${notoSans.className} antialiased`}>
-				<Layout>{children}</Layout>
+				<Providers>
+					<Layout>{children}</Layout>
+				</Providers>
 			</body>
 		</html>
 	)
