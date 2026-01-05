@@ -21,3 +21,17 @@
 body {
   @apply bg-bg text-white text-base;
 }
+
+.grid-6-cols {
+  @apply grid grid-cols-6 gap-6;
+}
+
+.recaptcha {
+  @apply mb-3;
+  filter: invert(1) grayscale(1);
+  transform: scale(1.1);
+
+  >div>div {
+    @apply mx-auto;
+  }
+}

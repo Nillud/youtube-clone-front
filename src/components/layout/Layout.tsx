@@ -14,7 +14,7 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
 	const toggleSidebar = () => setIsShowedSidebar(!isShowedSidebar)
 
 	return (
-		<main
+		<div
 			className={cn(
 				'flex min-h-screen',
 				styles.initialSidebar,
@@ -23,7 +23,7 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
 		>
 			<Sidebar toggleSidebar={toggleSidebar} />
 			<Content>{children}</Content>
-		</main>
+		</div>
 	)
 }
 

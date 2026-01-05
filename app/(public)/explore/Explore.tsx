@@ -17,21 +17,22 @@ export function Explore() {
 
 	return (
 		<section>
-			<Heading Icon={Compass}>Trending</Heading>
+			<Heading Icon={Compass}>Explore</Heading>
 			<div className='grid grid-cols-6 gap-6'>
 				{isLoading ? (
 					<SkeletonLoader
 						count={6}
 						className='h-36 rounded-md'
 					/>
-				) : (
-					!!data?.data.videos.length &&
+				) : !!data?.data.videos.length ? (
 					data.data.videos.map(video => (
 						<VideoItem
 							key={video.id}
 							video={video}
 						/>
 					))
+				) : (
+					<div>Explore are temporary unavailable</div>
 				)}
 			</div>
 		</section>

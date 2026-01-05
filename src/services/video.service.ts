@@ -1,5 +1,4 @@
-import axios from 'axios'
-
+import { axiosClassic } from '../api/axios'
 import type { IVideo } from '../types/video.types'
 
 interface IExporeVideos {
@@ -11,8 +10,10 @@ interface IExporeVideos {
 }
 
 class VideoService {
+	private _VIDEOS = '/videos'
+
 	getAll(searchTerm?: string | null) {
-		return axios.get<IExporeVideos>('/api/videos', {
+		return axiosClassic.get<IExporeVideos>(this._VIDEOS, {
 			params: searchTerm
 				? {
 						searchTerm
@@ -21,14 +22,16 @@ class VideoService {
 		})
 	}
 
-	getTrendingVideos(fromServer: boolean = false) {
-		return axios.get<IVideo[]>(
-			fromServer ? `${process.env.SERVER_URL}/api/videos/trending` : '/api/videos/trending'
-		)
+	getVideoGames() {
+		return axiosClassic.get<IExporeVideos>(`${this._VIDEOS}/games`)
+	}
+
+	getTrendingVideos() {
+		return axiosClassic.get<IVideo[]>(`${this._VIDEOS}/trending`)
 	}
 
 	getExploreVideos() {
-		return axios.get<IExporeVideos>('/api/videos/explore')
+		return axiosClassic.get<IExporeVideos>(`${this._VIDEOS}/explore`)
 	}
 }
 

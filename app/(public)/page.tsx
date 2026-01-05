@@ -6,6 +6,7 @@ import { VideoItem } from '@/src/components/ui/video-item/VideoItem'
 
 import { Explore } from './explore/Explore'
 import { videoService } from '@/src/services/video.service'
+import { PAGE } from '@/src/config/public-page.config'
 
 export const revalidate = 100
 export const dynamic = 'force-static'
@@ -13,34 +14,35 @@ export const dynamic = 'force-static'
 export const metadata: Metadata = {
 	title: 'Explore',
 	alternates: {
-		canonical: '/'
+		canonical: PAGE.HOME
 	},
 	openGraph: {
 		type: 'website',
-		url: '/',
+		url: PAGE.HOME,
 		title: 'Explore'
 	}
 }
 
 export default async function Home() {
-	const data = await videoService.getTrendingVideos(true)
+	const data = await videoService.getTrendingVideos()
 	const trendingVideos = data.data
 
 	return (
 		<>
-			<section className='mb-10'>
-				<Heading Icon={Flame}>Trending</Heading>
-				<div className='grid grid-cols-6 gap-6'>
-					{!!trendingVideos.length &&
-						trendingVideos.map(video => (
+			{!!trendingVideos.length && (
+				<section className='mb-10'>
+					<Heading Icon={Flame}>Trending</Heading>
+					<div className='grid-6-cols'>
+						{trendingVideos.map(video => (
 							<VideoItem
 								key={video.id}
 								video={video}
 								Icon={Flame}
 							/>
 						))}
-				</div>
-			</section>
+					</div>
+				</section>
+			)}
 			<section>
 				<Explore />
 			</section>
