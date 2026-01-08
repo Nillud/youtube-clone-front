@@ -3,10 +3,10 @@ import Cookies from 'js-cookie'
 import { axiosClassic } from '../api/axios'
 import { store } from '../store'
 import { clearAuthData, setAuthData } from '../store/auth.slice'
+import { EnumTokens } from '../types/auth.types'
 import type { IUser } from '../types/user.types'
 
 import type { IAuthData } from '@/app/auth/auth-form.types'
-import { EnumTokens } from '../types/auth.types'
 
 export interface IAuthResponse {
 	user: IUser
@@ -29,6 +29,17 @@ class AuthService {
 		}
 
 		return response
+	}
+
+	async initializeAuth() {
+		const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)
+		if (accessToken) return
+
+		try {
+			await this.getNewTokens()
+		} catch (error) {
+			store.dispatch(clearAuthData())
+		}
 	}
 
 	// Client
@@ -60,22 +71,23 @@ class AuthService {
 	async logout() {
 		const response = await axiosClassic.post<boolean>(`${this._AUTH}/logout`)
 		if (response.data) {
-			this._removeFromStorage()
-			store.dispatch(clearAuthData())
+			this.removeFromStorage()
 		}
 		return response
 	}
 
-	async _saveTokenStorage(accessToken: string) {
+	private _saveTokenStorage(accessToken: string) {
 		Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
 			domain: 'localhost',
 			sameSite: 'strict',
-			expires: 1
+			expires: 1 / 24,
+			secure: true
 		})
 	}
 
-	private _removeFromStorage() {
+	async removeFromStorage() {
 		Cookies.remove(EnumTokens.ACCESS_TOKEN)
+		store.dispatch(clearAuthData())
 	}
 }
 

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { type KeyboardEvent, useState } from 'react'
 
-import { PAGE } from '@/src/config/public-page.config'
+import { PAGE } from '@/config/public-page.config'
 
 export function SearchField() {
 	const router = useRouter()

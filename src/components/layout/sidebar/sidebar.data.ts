@@ -10,7 +10,7 @@ import {
 	TvMinimalPlay
 } from 'lucide-react'
 
-import { PAGE } from '@/src/config/public-page.config'
+import { PAGE } from '@/config/public-page.config'
 
 import type { ISidebarItem } from './sidebar.types'
 

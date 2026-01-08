@@ -1,5 +1,5 @@
-import { PAGE } from "@/src/config/public-page.config";
-import { COLORS } from "@/src/constants/colors.constants";
+import { PAGE } from "@/config/public-page.config";
+import { COLORS } from "@/constants/colors.constants";
 import { SquarePlay } from "lucide-react";
 import Link from "next/link";
 

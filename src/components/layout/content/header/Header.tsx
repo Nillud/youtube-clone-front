@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 
-import { SkeletonLoader } from '@/src/components/ui/SkeletonLoader'
+import { SkeletonLoader } from '@/components/ui/SkeletonLoader'
 
 import { HeaderLinks } from './HeaderLinks'
 import { SearchField } from './SearchField'

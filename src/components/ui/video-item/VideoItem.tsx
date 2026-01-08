@@ -3,12 +3,12 @@ import { BadgeCheck, type LucideIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { PAGE } from '@/src/config/public-page.config'
+import { PAGE } from '@/config/public-page.config'
 
-import { transformDate } from '@/src/utils/transform-date'
-import { transformViews } from '@/src/utils/transform-views'
+import { transformDate } from '@/utils/transform-date'
+import { transformViews } from '@/utils/transform-views'
 
-import type { IVideo } from '@/src/types/video.types'
+import type { IVideo } from '@/types/video.types'
 
 interface Props {
 	video: IVideo

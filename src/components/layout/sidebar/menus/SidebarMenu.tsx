@@ -8,9 +8,10 @@ import { usePathname } from 'next/navigation'
 interface Props {
 	title?: string
 	menu: ISidebarItem[]
+	isShowedSidebar: boolean
 }
 
-export function SidebarMenu({ title, menu }: Props) {
+export function SidebarMenu({ isShowedSidebar, title, menu }: Props) {
 	const pathname = usePathname()
 
 	return (
@@ -27,6 +28,7 @@ export function SidebarMenu({ title, menu }: Props) {
 						key={menuItem.label}
 						item={menuItem}
 						isActive={!!match(menuItem.link)(pathname)}
+						isShowedSidebar={isShowedSidebar}
 					/>
 				))}
 			</ul>
