@@ -6,9 +6,10 @@ import Link from 'next/link'
 import { PAGE } from '@/config/public-page.config'
 
 import { transformDate } from '@/utils/transform-date'
-import { transformViews } from '@/utils/transform-views'
+import { transformCount } from '@/utils/transform-count'
 
 import type { IVideo } from '@/types/video.types'
+import { VerifiedBadge } from '../VerifiedBadge'
 
 interface Props {
 	video: IVideo
@@ -63,7 +64,7 @@ export function VideoItem({ video, Icon }: Props) {
 							size={20}
 						/>
 					)}
-					<span className='text-gray-400 text-sm'>{transformViews(video.viewsCount)}</span>
+					<span className='text-gray-400 text-sm'>{transformCount(video.viewsCount)} views</span>
 				</div>
 				<div>
 					<span className='text-gray-400 text-sm'>{transformDate(video.createdAt)}</span>
@@ -86,12 +87,7 @@ export function VideoItem({ video, Icon }: Props) {
 				>
 					<span className='text-gray-400 text-sm'>{video.channel.user.name}</span>
 					{video.channel.isVerified && (
-						<span>
-							<BadgeCheck
-								className='text-green-500'
-								size={15}
-							/>
-						</span>
+						<VerifiedBadge />
 					)}
 				</Link>
 			</div>

@@ -1,9 +1,12 @@
 'use client'
 
+import { Controller } from 'react-hook-form'
+
 import { SkeletonLoader } from '@/components/ui/SkeletonLoader'
 import { Button } from '@/components/ui/button/Button'
 import { Field } from '@/components/ui/field/Field'
 import { TextArea } from '@/components/ui/field/TextArea'
+import { UploadField } from '@/components/ui/upload-field/UploadField'
 
 import { useSettings } from './useSettings'
 
@@ -12,14 +15,15 @@ export function SettingsForm() {
 		form: {
 			handleSubmit,
 			register,
-			formState: { errors }
+			formState: { errors },
+			control
 		},
 		isLoading,
-        isProfileLoading,
+		isProfileLoading,
 		onSubmit
 	} = useSettings()
 
-    if (isProfileLoading) return <div>Loading...</div>
+	if (isProfileLoading) return <div>Loading...</div>
 
 	return (
 		<div className='w-3/5'>
@@ -37,7 +41,7 @@ export function SettingsForm() {
 						<Field
 							label='Password'
 							type='password'
-							registration={register('password', { required: 'Password is required' })}
+							registration={register('password')}
 							error={errors.password?.message}
 							placeholder='Enter password'
 						/>
@@ -66,9 +70,45 @@ export function SettingsForm() {
 							rows={4}
 						/>
 					</div>
+
+					<div>
+						<Controller
+							name='channel.avatarUrl'
+							control={control}
+							render={({ field: { onChange, value }, formState: { errors } }) => {
+								return (
+									<UploadField
+										label='Avatar:'
+										onChange={onChange}
+										value={value}
+										error={errors.channel?.avatarUrl}
+										folder='avatars'
+										className='mb-5'
+									/>
+								)
+							}}
+						/>
+						<Controller
+							name='channel.bannerUrl'
+							control={control}
+							render={({ field: { onChange, value }, formState: { errors } }) => {
+								return (
+									<UploadField
+										label='Banner:'
+										onChange={onChange}
+										value={value}
+										error={errors.channel?.bannerUrl}
+										folder='avatars'
+										aspectRatio='16:9'
+										overlay='/overlay.png'
+									/>
+								)
+							}}
+						/>
+					</div>
 				</div>
 
-				<div className='text-center mt-6'>
+				<div className='text-center mt-6 mt-10'>
 					<Button
 						type='submit'
 						isLoading={isLoading}

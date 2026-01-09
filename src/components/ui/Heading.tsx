@@ -1,17 +1,25 @@
+import cn from 'clsx'
 import type { LucideIcon } from 'lucide-react'
 import type { ReactNode } from 'react'
-import cn from 'clsx'
+import { twMerge } from 'tailwind-merge'
 
 interface Props {
 	children: ReactNode
 	Icon?: LucideIcon
 	isH1?: boolean
 	isPageHeading?: boolean
+	className?: string
 }
 
-export function Heading({ children, Icon, isH1 = false, isPageHeading = false }: Props) {
+export function Heading({ children, Icon, isH1 = false, isPageHeading = false, className }: Props) {
 	return (
-		<div className={cn('flex items-center gap-1.5 opacity-90', isPageHeading ? 'gap-2.5 mb-6' : 'gap-1.5 mb-4')}>
+		<div
+			className={twMerge(
+				'flex items-center gap-1.5 opacity-90',
+				isPageHeading ? 'gap-2.5 mb-6' : 'gap-1.5 mb-4',
+				className
+			)}
+		>
 			{Icon && <Icon className='text-primary' />}
 			{isH1 || isPageHeading ? (
 				<h1 className={cn('font-semibold', isPageHeading ? 'text-3xl' : 'text-lg')}>{children}</h1>

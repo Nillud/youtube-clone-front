@@ -26,4 +26,6 @@ export interface IChannel {
 	updatedAt: string
 	user: IUser
 	userId: string
+	videos: IVideo[]
+	subscribers: IUser[]
 }

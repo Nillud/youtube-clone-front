@@ -7,7 +7,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode
 }
 
-export function Button({ children, className = '', isLoading, ...props }: Props) {
+export function Button({ children, className = '', isLoading = false, ...props }: Props) {
 	return (
 		<button
 			className={cn(
