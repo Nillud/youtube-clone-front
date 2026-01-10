@@ -23,6 +23,7 @@ export function Logout() {
 		<button
 			onClick={() => mutate()}
 			className={'cursor-pointer group py-3 flex items-center gap-5'}
+			title='Logout'
 		>
 			<LogOut
 				className={cn(

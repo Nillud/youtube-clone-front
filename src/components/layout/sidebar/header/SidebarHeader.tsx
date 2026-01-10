@@ -11,6 +11,7 @@ export function SidebarHeader({ toggleSidebar }: Props) {
 			<button
 				className='cursor-pointer opacity-85 hover:opacity-100 transition duration-300'
 				onClick={toggleSidebar}
+				title='Toggle sidebar'
 			>
 				<Menu />
 			</button>

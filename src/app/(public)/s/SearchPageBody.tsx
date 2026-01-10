@@ -8,8 +8,10 @@ const DynamicSearchPage = dynamic(() => import('./SearchPage').then(mod => mod.S
 	ssr: false,
 	loading: () => (
 		<div className='grid grid-cols-6 gap-6'>
-			{' '}
-			<SkeletonLoader count={6} className='h-36 rounded-md' />
+			<SkeletonLoader
+				count={6}
+				className='h-36 rounded-md'
+			/>
 		</div>
 	)
 })

@@ -1,15 +1,18 @@
-import * as m from 'framer-motion/m'
-import { BadgeCheck, type LucideIcon } from 'lucide-react'
+'use client'
+
+import { motion } from 'framer-motion'
+import { type LucideIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { PAGE } from '@/config/public-page.config'
 
-import { transformDate } from '@/utils/transform-date'
 import { transformCount } from '@/utils/transform-count'
+import { transformDate } from '@/utils/transform-date'
+
+import { VerifiedBadge } from '../VerifiedBadge'
 
 import type { IVideo } from '@/types/video.types'
-import { VerifiedBadge } from '../VerifiedBadge'
 
 interface Props {
 	video: IVideo
@@ -18,7 +21,7 @@ interface Props {
 
 export function VideoItem({ video, Icon }: Props) {
 	return (
-		<m.div
+		<motion.div
 			whileHover={{
 				scale: 1.03,
 				y: -5
@@ -86,11 +89,9 @@ export function VideoItem({ video, Icon }: Props) {
 					className='flex items-center gap-1'
 				>
 					<span className='text-gray-400 text-sm'>{video.channel.user.name}</span>
-					{video.channel.isVerified && (
-						<VerifiedBadge />
-					)}
+					{video.channel.isVerified && <VerifiedBadge />}
 				</Link>
 			</div>
-		</m.div>
+		</motion.div>
 	)
 }
